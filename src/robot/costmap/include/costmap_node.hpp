@@ -13,7 +13,7 @@ class CostmapNode : public rclcpp::Node {
     
     // Place callback function here
     void publishMessage();
-    void subscribeMessage(const sensor_msgs::msg::LaserScan msg);
+    void subscribeMessage(const sensor_msgs::msg::LaserScan::SharedPtr msg);
     
   private:
     robot::CostmapCore costmap_;
@@ -22,7 +22,7 @@ class CostmapNode : public rclcpp::Node {
     rclcpp::TimerBase::SharedPtr timer_;
 
     rclcpp::Subscription<sensor_msgs::msg::LaserScan>::SharedPtr subscription_;
-    sensor_msgs::msg::LaserScan OccupancyGrid[][];
+    
 };
   
 #endif 

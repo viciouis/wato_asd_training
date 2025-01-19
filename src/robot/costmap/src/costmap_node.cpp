@@ -7,7 +7,7 @@ CostmapNode::CostmapNode() : Node("costmap"), costmap_(robot::CostmapCore(this->
   // Initialize the constructs and their parameters
   string_pub_ = this->create_publisher<std_msgs::msg::String>("/test_topic", 10);
   timer_ = this->create_wall_timer(std::chrono::milliseconds(500), std::bind(&CostmapNode::publishMessage, this));
-  subscription_ = this->create_subscription<std_msgs::msg::String>("/lidar", 10, std::bind(&CostmapNode::subscribeMessage, this));
+  subscription_ = this->create_subscription<sensor_msgs::msg::LaserScan>("/lidar", 10, std::bind(&CostmapNode::subscribeMessage, this));
 }
   
 // Define the timer to publish a message every 500ms
@@ -18,7 +18,7 @@ void CostmapNode::publishMessage() {
   string_pub_->publish(message);
 }
 
-void CostmapNode::subscribeMessage(const sensor_msgs::msg::LaserScan msg){
+void CostmapNode::subscribeMessage(const sensor_msgs::msg::LaserScan::SharedPtr msg){
   
 }
 
